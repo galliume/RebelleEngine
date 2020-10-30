@@ -13,5 +13,7 @@ namespace Rebelle {
 			void Run();
 	};
 
+	//to be defined in client
+	Application* CreateApplication();
 }
 

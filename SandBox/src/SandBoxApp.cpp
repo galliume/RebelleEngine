@@ -15,9 +15,7 @@ class SandBox : public Rebelle::Application
 
 };
 
-int main()
+Rebelle::Application* Rebelle::CreateApplication()
 {
-	SandBox* sandBox = new SandBox();
-	sandBox->Run();
-	delete sandBox;
+	return new SandBox();
 }
