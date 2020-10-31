@@ -2,8 +2,6 @@
 
 #include "Event.h"
 
-#include <sstream>
-
 namespace Rebelle {
 
 	class REBELLE_API MouseMovedEvent : public Event

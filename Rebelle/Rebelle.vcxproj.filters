@@ -34,6 +34,7 @@
     <ClInclude Include="src\Rebelle\Log.h">
       <Filter>Rebelle</Filter>
     </ClInclude>
+    <ClInclude Include="src\rblpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Rebelle\Application.cpp">
@@ -42,5 +43,6 @@
     <ClCompile Include="src\Rebelle\Log.cpp">
       <Filter>Rebelle</Filter>
     </ClCompile>
+    <ClCompile Include="src\rblpch.cpp" />
   </ItemGroup>
 </Project>

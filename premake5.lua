@@ -18,6 +18,9 @@ project "Rebelle"
 	targetdir  ("bin/" .. outputdir  .. "/%{prj.name}")
 	objdir  ("bin-int/" .. outputdir  .. "/%{prj.name}")
 
+	pchheader "rblpch.h"
+	pchsource "Rebelle/src/rblpch.cpp"
+
 	files 
 	{
 		"%{prj.name}/src/**.h",
@@ -65,6 +68,9 @@ project "Sandbox"
 
 	targetdir  ("bin/" .. outputdir  .. "/%{prj.name}")
 	objdir  ("bin-int/" .. outputdir  .. "/%{prj.name}")
+
+	pchheader "rblpch.h"
+	pchsource "Rebelle/src/rblpch.cpp"
 
 	files 
 	{

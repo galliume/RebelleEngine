@@ -2,8 +2,6 @@
 
 #include "Event.h"
 
-#include <sstream>
-
 namespace Rebelle
 {
 	class REBELLE_API KeyEvent : public Event
@@ -11,7 +9,7 @@ namespace Rebelle
 	public:
 		inline int GetKeyCode() const { return m_KeyCode; }
 
-		//EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
+		EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
 
 	protected:
 		KeyEvent(int keycode) : m_KeyCode(keycode) {}
