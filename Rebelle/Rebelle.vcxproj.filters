@@ -4,6 +4,9 @@
     <Filter Include="Rebelle">
       <UniqueIdentifier>{20B8A69E-8C97-253A-95AF-B010010E8C9B}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Rebelle\Events">
+      <UniqueIdentifier>{0400988C-F0CD-8B92-D961-FCB8C5CE67F7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Rebelle.h" />
@@ -15,6 +18,18 @@
     </ClInclude>
     <ClInclude Include="src\Rebelle\EntryPoint.h">
       <Filter>Rebelle</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Rebelle\Events\ApplicationEvent.h">
+      <Filter>Rebelle\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Rebelle\Events\Event.h">
+      <Filter>Rebelle\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Rebelle\Events\KeyEvent.h">
+      <Filter>Rebelle\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Rebelle\Events\MouseEvent.h">
+      <Filter>Rebelle\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Rebelle\Log.h">
       <Filter>Rebelle</Filter>
