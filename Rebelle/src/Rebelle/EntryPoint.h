@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef RBL_PLATFORM_WINDOWS
+
 extern Rebelle::Application* Rebelle::CreateApplication();
 
 int main(int argc, char** argv)
@@ -11,3 +13,5 @@ int main(int argc, char** argv)
 	app->Run();
 	delete app;
 }
+
+#endif

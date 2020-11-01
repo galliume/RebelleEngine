@@ -11,3 +11,11 @@
 #endif
 
 #define BIT(x) (1 << x)
+
+#ifdef RBL_ENABLE_ASSERTS
+#define RBL_ASSERT(x, ...) { if(!(x)) { RBL_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+#define RBL_CORE_ASSERT(x, ...) { if(!(x)) { RBL_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+#else
+#define RBL_ASSERT(x, ...)
+#define RBL_CORE_ASSERT(x, ...)
+#endif

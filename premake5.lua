@@ -8,7 +8,14 @@ workspace "Rebelle"
 		"Dist"
 	}
 
+
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+
+IncludeDir = {}
+IncludeDir["GLFW"] = "Rebelle/vendor/GLFW/include"
+
+include "Rebelle/vendor/GLFW"
+
 
 project "Rebelle"
 	location "Rebelle"
@@ -30,7 +37,14 @@ project "Rebelle"
 	includedirs
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links 
+	{
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"
@@ -68,9 +82,6 @@ project "Sandbox"
 
 	targetdir  ("bin/" .. outputdir  .. "/%{prj.name}")
 	objdir  ("bin-int/" .. outputdir  .. "/%{prj.name}")
-
-	pchheader "rblpch.h"
-	pchsource "Rebelle/src/rblpch.cpp"
 
 	files 
 	{

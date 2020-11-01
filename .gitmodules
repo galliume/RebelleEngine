@@ -1,3 +1,6 @@
 [submodule "Rebelle/vendor/spdlog"]
 	path = Rebelle/vendor/spdlog
 	url = http://github.com/gabime/spdlog
+[submodule "Rebelle/vendor/GLFW"]
+	path = Rebelle/vendor/GLFW
+	url = https://github.com/galliume/glfw
