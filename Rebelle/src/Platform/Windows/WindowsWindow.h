@@ -11,6 +11,11 @@ namespace Rebelle {
 	{
 	public:
 		WindowsWindow(const WindowProps& props);
+		static void GFLWErrorCallback(int error, const char* description)
+		{
+			RBL_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
+		}
+
 		virtual ~WindowsWindow();
 
 		void OnUpdate() override;

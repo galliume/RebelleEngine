@@ -1,63 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Platform">
-      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Platform\Windows">
-      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
+    <Filter Include="src\Platform">
+      <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Rebelle">
-      <UniqueIdentifier>{20B8A69E-8C97-253A-95AF-B010010E8C9B}</UniqueIdentifier>
+    <Filter Include="src\Platform\Windows">
+      <UniqueIdentifier>{5B054582-4794-CE4B-F0B2-E246DC20DFF1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Rebelle\Events">
-      <UniqueIdentifier>{0400988C-F0CD-8B92-D961-FCB8C5CE67F7}</UniqueIdentifier>
+    <Filter Include="src\Rebelle">
+      <UniqueIdentifier>{37B8E0A7-A36D-599D-2C62-5374981650A1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Rebelle\Events">
+      <UniqueIdentifier>{3B207CEA-2704-3D40-9064-37937C6727C2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\assets">
+      <UniqueIdentifier>{8F11E44F-7BC9-259D-E4D0-FEF8D0A7C08D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\assets\icons">
+      <UniqueIdentifier>{9A73FBBD-866C-1A10-AF9E-FF949BF6F91B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor">
+      <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\stb_image">
+      <UniqueIdentifier>{0DA0BA59-F998-D9AB-22CB-BE300E23B9B7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
-      <Filter>Platform\Windows</Filter>
+      <Filter>src\Platform\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="src\Rebelle.h" />
+    <ClInclude Include="src\Rebelle.h">
+      <Filter>src</Filter>
+    </ClInclude>
     <ClInclude Include="src\Rebelle\Application.h">
-      <Filter>Rebelle</Filter>
+      <Filter>src\Rebelle</Filter>
     </ClInclude>
     <ClInclude Include="src\Rebelle\Core.h">
-      <Filter>Rebelle</Filter>
+      <Filter>src\Rebelle</Filter>
     </ClInclude>
     <ClInclude Include="src\Rebelle\EntryPoint.h">
-      <Filter>Rebelle</Filter>
+      <Filter>src\Rebelle</Filter>
     </ClInclude>
     <ClInclude Include="src\Rebelle\Events\ApplicationEvent.h">
-      <Filter>Rebelle\Events</Filter>
+      <Filter>src\Rebelle\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Rebelle\Events\Event.h">
-      <Filter>Rebelle\Events</Filter>
+      <Filter>src\Rebelle\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Rebelle\Events\KeyEvent.h">
-      <Filter>Rebelle\Events</Filter>
+      <Filter>src\Rebelle\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Rebelle\Events\MouseEvent.h">
-      <Filter>Rebelle\Events</Filter>
+      <Filter>src\Rebelle\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Rebelle\Log.h">
-      <Filter>Rebelle</Filter>
+      <Filter>src\Rebelle</Filter>
     </ClInclude>
     <ClInclude Include="src\Rebelle\Window.h">
-      <Filter>Rebelle</Filter>
+      <Filter>src\Rebelle</Filter>
     </ClInclude>
-    <ClInclude Include="src\rblpch.h" />
+    <ClInclude Include="src\rblpch.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\stb_image\stb_image.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
-      <Filter>Platform\Windows</Filter>
+      <Filter>src\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Rebelle\Application.cpp">
-      <Filter>Rebelle</Filter>
+      <Filter>src\Rebelle</Filter>
     </ClCompile>
     <ClCompile Include="src\Rebelle\Log.cpp">
-      <Filter>Rebelle</Filter>
+      <Filter>src\Rebelle</Filter>
     </ClCompile>
-    <ClCompile Include="src\rblpch.cpp" />
+    <ClCompile Include="src\rblpch.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\stb_image\stb_image.cpp">
+      <Filter>vendor\stb_image</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="src\assets\icons\kebab.png">
+      <Filter>src\assets\icons</Filter>
+    </Image>
   </ItemGroup>
 </Project>
