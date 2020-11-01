@@ -46,16 +46,22 @@ namespace Rebelle {
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		
-		/*
 		GLFWimage images[1];
 		int width, height, components;
-		unsigned char* data = stbi_load("Rebelle/src/assets/icons/rebelle.png", &width, &height, &components, STBI_rgb_alpha);
+		std::string str = "src/assets/icons/rebelle.png";
+
+		stbi_uc* data = stbi_load(str.c_str(), &width, &height, &components, STBI_rgb_alpha);
+
 		if (!data) {
 			RBL_CORE_ERROR(stbi_failure_reason());
 		}
+
+		images[0].height = height;
+		images[0].width = width;
 		images[0].pixels = data;
 		glfwSetWindowIcon(m_Window, 1, images);
-		*/
+
+		stbi_image_free(data);
 
 		glfwMakeContextCurrent(m_Window);
 		glfwSetWindowUserPointer(m_Window, &m_Data);
