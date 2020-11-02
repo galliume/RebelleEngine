@@ -16,12 +16,6 @@
     <Filter Include="src\Rebelle\Events">
       <UniqueIdentifier>{3B207CEA-2704-3D40-9064-37937C6727C2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\assets">
-      <UniqueIdentifier>{8F11E44F-7BC9-259D-E4D0-FEF8D0A7C08D}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\assets\icons">
-      <UniqueIdentifier>{9A73FBBD-866C-1A10-AF9E-FF949BF6F91B}</UniqueIdentifier>
-    </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
     </Filter>
@@ -57,6 +51,12 @@
     <ClInclude Include="src\Rebelle\Events\MouseEvent.h">
       <Filter>src\Rebelle\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Rebelle\Layer.h">
+      <Filter>src\Rebelle</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Rebelle\LayerStack.h">
+      <Filter>src\Rebelle</Filter>
+    </ClInclude>
     <ClInclude Include="src\Rebelle\Log.h">
       <Filter>src\Rebelle</Filter>
     </ClInclude>
@@ -77,6 +77,12 @@
     <ClCompile Include="src\Rebelle\Application.cpp">
       <Filter>src\Rebelle</Filter>
     </ClCompile>
+    <ClCompile Include="src\Rebelle\Layer.cpp">
+      <Filter>src\Rebelle</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Rebelle\LayerStack.cpp">
+      <Filter>src\Rebelle</Filter>
+    </ClCompile>
     <ClCompile Include="src\Rebelle\Log.cpp">
       <Filter>src\Rebelle</Filter>
     </ClCompile>
@@ -86,10 +92,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="src\assets\icons\kebab.png">
-      <Filter>src\assets\icons</Filter>
-    </Image>
   </ItemGroup>
 </Project>

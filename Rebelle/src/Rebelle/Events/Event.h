@@ -35,6 +35,8 @@ namespace Rebelle
 		friend class EventDispatcher;
 
 	public:
+		bool Handled = false;
+
 		virtual EventType GetEventType() const = 0;
 		virtual const char* GetName() const = 0;
 		virtual int GetCategoryFlags() const = 0;
@@ -55,7 +57,9 @@ namespace Rebelle
 		using EventFn = std::function<bool(T&)>;
 
 	public:
-		EventDispatcher(Event& event) : m_Event(event) {}
+		EventDispatcher(Event& event) : m_Event(event) {
+			m_Event.m_Handled = NULL;
+		}
 
 		template<typename T>
 		bool Dispatch(EventFn<T> func)

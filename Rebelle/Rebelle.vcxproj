@@ -84,6 +84,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalOptions>/MDd %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -109,6 +110,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -135,6 +137,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -158,6 +161,8 @@
     <ClInclude Include="src\Rebelle\Events\Event.h" />
     <ClInclude Include="src\Rebelle\Events\KeyEvent.h" />
     <ClInclude Include="src\Rebelle\Events\MouseEvent.h" />
+    <ClInclude Include="src\Rebelle\Layer.h" />
+    <ClInclude Include="src\Rebelle\LayerStack.h" />
     <ClInclude Include="src\Rebelle\Log.h" />
     <ClInclude Include="src\Rebelle\Window.h" />
     <ClInclude Include="src\rblpch.h" />
@@ -166,14 +171,13 @@
   <ItemGroup>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\Rebelle\Application.cpp" />
+    <ClCompile Include="src\Rebelle\Layer.cpp" />
+    <ClCompile Include="src\Rebelle\LayerStack.cpp" />
     <ClCompile Include="src\Rebelle\Log.cpp" />
     <ClCompile Include="src\rblpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="vendor\stb_image\stb_image.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="src\assets\icons\kebab.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">
