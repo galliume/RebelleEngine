@@ -7,6 +7,9 @@
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Platform\OpenGL">
+      <UniqueIdentifier>{35A49437-A105-7245-2A73-B8F796D3A804}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Platform\Windows">
       <UniqueIdentifier>{5B054582-4794-CE4B-F0B2-E246DC20DFF1}</UniqueIdentifier>
     </Filter>
@@ -16,6 +19,9 @@
     <Filter Include="src\Rebelle\Events">
       <UniqueIdentifier>{3B207CEA-2704-3D40-9064-37937C6727C2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Rebelle\ImGui">
+      <UniqueIdentifier>{A13A56E8-0D51-547E-56C8-DF9FC21D2506}</UniqueIdentifier>
+    </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
     </Filter>
@@ -24,6 +30,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\OpenGL\imgui_impl_opengl3.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>src\Platform\Windows</Filter>
     </ClInclude>
@@ -51,6 +60,9 @@
     <ClInclude Include="src\Rebelle\Events\MouseEvent.h">
       <Filter>src\Rebelle\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Rebelle\ImGui\ImGuiLayer.h">
+      <Filter>src\Rebelle\ImGui</Filter>
+    </ClInclude>
     <ClInclude Include="src\Rebelle\Layer.h">
       <Filter>src\Rebelle</Filter>
     </ClInclude>
@@ -71,11 +83,17 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGL\imgui_impl_opengl3.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Rebelle\Application.cpp">
       <Filter>src\Rebelle</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Rebelle\ImGui\ImGuiLayer.cpp">
+      <Filter>src\Rebelle\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\Rebelle\Layer.cpp">
       <Filter>src\Rebelle</Filter>

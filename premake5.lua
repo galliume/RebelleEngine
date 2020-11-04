@@ -14,10 +14,12 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "Rebelle/vendor/GLFW/include"
 IncludeDir["Glad"] = "Rebelle/vendor/Glad/include"
+IncludeDir["IMGUI"] = "Rebelle/vendor/IMGUI/include"
+
 
 include "Rebelle/vendor/GLFW"
 include "Rebelle/vendor/Glad"
-
+include "Rebelle/vendor/IMGUI"
 
 project "Rebelle"
 	location "Rebelle"
@@ -44,16 +46,18 @@ project "Rebelle"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{prj.name}/vendor/stb_image",
 		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.Glad}"
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.IMGUI}"
 	}
 
 	links 
 	{
 		"GLFW",
 		"Glad",
+		"IMGUI",		
 		"opengl32.lib"
 	}
-
+	
 	filter "system:windows"
 		cppdialect "C++17"
 		staticruntime "On"
@@ -63,7 +67,8 @@ project "Rebelle"
 		{
 			"RBL_PLATFORM_WINDOWS",
 			"RBL_BUILD_DLL",
-			"GLFW_INCLUDE_NONE"
+			"GLFW_INCLUDE_NONE",
+			"IMGUI_IMPL_OPENGL_LOADER_GLAD"
 		}
 
 		postbuildcommands

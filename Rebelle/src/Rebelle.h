@@ -5,3 +5,4 @@
 #include "Rebelle/Layer.h"
 #include "Rebelle/Log.h"
 #include "Rebelle/EntryPoint.h"
+#include "Rebelle/ImGui/ImGuiLayer.h"

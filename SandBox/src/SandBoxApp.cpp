@@ -21,6 +21,7 @@ class SandBox : public Rebelle::Application
 		SandBox()
 		{
 			PushLayer(new ExampleLayer());
+			PushOverlay(new Rebelle::ImGuiLayer());
 		}
 
 		~SandBox()
