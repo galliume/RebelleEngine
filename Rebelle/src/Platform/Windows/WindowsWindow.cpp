@@ -6,6 +6,8 @@
 #include "Rebelle/Events/MouseEvent.h"
 #include "Rebelle/Events/KeyEvent.h"
 
+#include <Glad/glad.h>
+
 namespace Rebelle {
 
 	static bool s_GLFWInitialized = false;
@@ -64,6 +66,9 @@ namespace Rebelle {
 		stbi_image_free(data);
 
 		glfwMakeContextCurrent(m_Window);
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		RBL_CORE_ASSERT(status, "failed to initialize glad");
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 

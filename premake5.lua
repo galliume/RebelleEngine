@@ -13,8 +13,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["GLFW"] = "Rebelle/vendor/GLFW/include"
+IncludeDir["Glad"] = "Rebelle/vendor/Glad/include"
 
 include "Rebelle/vendor/GLFW"
+include "Rebelle/vendor/Glad"
 
 
 project "Rebelle"
@@ -41,12 +43,14 @@ project "Rebelle"
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
 		"%{prj.name}/vendor/stb_image",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
 	}
 
 	links 
 	{
 		"GLFW",
+		"Glad",
 		"opengl32.lib"
 	}
 
@@ -58,7 +62,8 @@ project "Rebelle"
 		defines
 		{
 			"RBL_PLATFORM_WINDOWS",
-			"RBL_BUILD_DLL"
+			"RBL_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands
