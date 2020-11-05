@@ -166,6 +166,7 @@
     <ClInclude Include="src\Rebelle\Layer.h" />
     <ClInclude Include="src\Rebelle\LayerStack.h" />
     <ClInclude Include="src\Rebelle\Log.h" />
+    <ClInclude Include="src\Rebelle\Macros.h" />
     <ClInclude Include="src\Rebelle\Window.h" />
     <ClInclude Include="src\rblpch.h" />
     <ClInclude Include="vendor\stb_image\stb_image.h" />
