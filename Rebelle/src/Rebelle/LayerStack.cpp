@@ -16,6 +16,13 @@ namespace Rebelle {
 		}
 	}
 
+	void LayerStack::Update()
+	{
+		for (Layer* layer : m_Layers)
+		{
+			layer->OnUpdate();
+		}
+	}
 	void LayerStack::PushLayer(Layer* layer)
 	{
 		m_LayerInsert = m_Layers.emplace(m_LayerInsert, layer);
