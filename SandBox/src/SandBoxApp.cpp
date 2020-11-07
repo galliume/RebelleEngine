@@ -7,7 +7,7 @@ public:
 
 	void OnUpdate() override
 	{
-		RBL_INFO("Layer update !");
+		//RBL_INFO("Layer update !");
 	}
 
 	void OnEvent(Rebelle::Event& event) override
