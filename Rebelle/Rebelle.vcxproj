@@ -153,6 +153,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Platform\OpenGL\imgui_impl_opengl3.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\Rebelle.h" />
     <ClInclude Include="src\Rebelle\Application.h" />
@@ -163,6 +164,7 @@
     <ClInclude Include="src\Rebelle\Events\KeyEvent.h" />
     <ClInclude Include="src\Rebelle\Events\MouseEvent.h" />
     <ClInclude Include="src\Rebelle\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\Rebelle\Input.h" />
     <ClInclude Include="src\Rebelle\Layer.h" />
     <ClInclude Include="src\Rebelle\LayerStack.h" />
     <ClInclude Include="src\Rebelle\Log.h" />
@@ -173,6 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\Rebelle\Application.cpp" />
     <ClCompile Include="src\Rebelle\ImGui\ImGuiLayer.cpp" />

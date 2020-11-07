@@ -2,8 +2,9 @@
 #include "Macros.h"
 #include "Application.h"
 #include "Rebelle/Log.h"
-#
+#include "Input.h"
 #include <Glad/glad.h>
+#include "Platform/Windows/WindowsWindow.h"
 
 namespace Rebelle {
 	Application* Application::s_Instance = nullptr;
@@ -30,6 +31,9 @@ namespace Rebelle {
 
 			m_LayerStack.Update();
 			m_Window->OnUpdate();
+
+			auto[x, y] = Input::GetMousePos();
+			RBL_CORE_TRACE("{0}, {1}", x, y);
 		}
 	}
 
