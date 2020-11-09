@@ -84,6 +84,8 @@
     <ClInclude Include="src\Rebelle\Macros.h" />
     <ClInclude Include="src\Rebelle\Input.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
+    <ClInclude Include="src\Rebelle\KeyCodes.h" />
+    <ClInclude Include="src\Rebelle\MouseButtonCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\imgui_impl_opengl3.cpp">

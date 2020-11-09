@@ -31,9 +31,6 @@ namespace Rebelle {
 
 			m_LayerStack.Update();
 			m_Window->OnUpdate();
-
-			auto[x, y] = Input::GetMousePos();
-			RBL_CORE_TRACE("{0}, {1}", x, y);
 		}
 	}
 

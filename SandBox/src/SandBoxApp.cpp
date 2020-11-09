@@ -12,7 +12,7 @@ public:
 
 	void OnEvent(Rebelle::Event& event) override
 	{
-		RBL_TRACE("{0}", event);
+		//RBL_TRACE("{0}", event);
 	}
 };
 class SandBox : public Rebelle::Application

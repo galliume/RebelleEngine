@@ -161,6 +161,7 @@
     <ClInclude Include="src\Rebelle\EntryPoint.h" />
     <ClInclude Include="src\Rebelle\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Rebelle\Events\Event.h" />
+    <ClInclude Include="src\Rebelle\KeyCodes.h" />
     <ClInclude Include="src\Rebelle\Events\KeyEvent.h" />
     <ClInclude Include="src\Rebelle\Events\MouseEvent.h" />
     <ClInclude Include="src\Rebelle\ImGui\ImGuiLayer.h" />
@@ -169,6 +170,7 @@
     <ClInclude Include="src\Rebelle\LayerStack.h" />
     <ClInclude Include="src\Rebelle\Log.h" />
     <ClInclude Include="src\Rebelle\Macros.h" />
+    <ClInclude Include="src\Rebelle\MouseButtonCodes.h" />
     <ClInclude Include="src\Rebelle\Window.h" />
     <ClInclude Include="src\rblpch.h" />
     <ClInclude Include="vendor\stb_image\stb_image.h" />
