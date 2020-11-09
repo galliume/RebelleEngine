@@ -15,7 +15,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Rebelle/vendor/GLFW/include"
 IncludeDir["Glad"] = "Rebelle/vendor/Glad/include"
 IncludeDir["IMGUI"] = "Rebelle/vendor/IMGUI/include"
-
+IncludeDir["GLM"] = "Rebelle/vendor/GLM"
 
 include "Rebelle/vendor/GLFW"
 include "Rebelle/vendor/Glad"
@@ -37,7 +37,9 @@ project "Rebelle"
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
 		"%{prj.name}/vendor/stb_image/**.h",
-		"%{prj.name}/vendor/stb_image/**.cpp"
+		"%{prj.name}/vendor/stb_image/**.cpp",
+		"%{prj.name}/vendor/GLM/glm/**.hpp",
+		"%{prj.name}/vendor/GLM/glm/**.inl"
 	}
 
 	includedirs
@@ -47,7 +49,8 @@ project "Rebelle"
 		"%{prj.name}/vendor/stb_image",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.IMGUI}"
+		"%{IncludeDir.IMGUI}",
+		"%{IncludeDir.GLM}"
 	}
 
 	links 
@@ -108,7 +111,8 @@ project "Sandbox"
 	includedirs
 	{
 		"Rebelle/vendor/spdlog/include",
-		"Rebelle/src"
+		"Rebelle/src",
+		"%{IncludeDir.GLM}"
 	}
 
 	links 
