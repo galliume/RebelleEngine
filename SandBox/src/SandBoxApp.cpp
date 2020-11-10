@@ -1,4 +1,5 @@
 #include <Rebelle.h>
+#include "IMGUI/imgui.h"
 
 class ExampleLayer : public Rebelle::Layer
 {
@@ -14,6 +15,12 @@ public:
 	{
 		//RBL_TRACE("{0}", event);
 	}
+	virtual void OnImGuiRender() override
+	{
+		ImGui::Begin("Test");
+		ImGui::Text("Hello World");
+		ImGui::End();
+	}
 };
 class SandBox : public Rebelle::Application
 {
@@ -21,7 +28,6 @@ class SandBox : public Rebelle::Application
 		SandBox()
 		{
 			PushLayer(new ExampleLayer());
-			PushOverlay(new Rebelle::ImGuiLayer());
 		}
 
 		~SandBox()

@@ -5,6 +5,7 @@
 #include "Rebelle/LayerStack.h"
 #include "Rebelle/Events/Event.h"
 #include "Rebelle/Events/ApplicationEvent.h"
+#include "Rebelle/ImGui/ImGuiLayer.h"
 
 namespace Rebelle {
 
@@ -24,6 +25,7 @@ namespace Rebelle {
 	private:
 		bool OnWindowClosed(WindowCloseEvent& e);
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 		static Application* s_Instance;

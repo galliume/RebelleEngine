@@ -1,6 +1,6 @@
 workspace "Rebelle"
 	architecture "x64"
-
+	startproject "Sandbox"
 	configurations
 	{
 		"Debug",
@@ -8,13 +8,12 @@ workspace "Rebelle"
 		"Dist"
 	}
 
-
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["GLFW"] = "Rebelle/vendor/GLFW/include"
 IncludeDir["Glad"] = "Rebelle/vendor/Glad/include"
-IncludeDir["IMGUI"] = "Rebelle/vendor/IMGUI/include"
+IncludeDir["IMGUI"] = "Rebelle/vendor/IMGUI"
 IncludeDir["GLM"] = "Rebelle/vendor/GLM"
 
 include "Rebelle/vendor/GLFW"
@@ -23,8 +22,10 @@ include "Rebelle/vendor/IMGUI"
 
 project "Rebelle"
 	location "Rebelle"
-	kind "SharedLib"
+ 	kind "StaticLib"
 	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir  ("bin/" .. outputdir  .. "/%{prj.name}")
 	objdir  ("bin-int/" .. outputdir  .. "/%{prj.name}")
@@ -39,7 +40,12 @@ project "Rebelle"
 		"%{prj.name}/vendor/stb_image/**.h",
 		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/GLM/glm/**.hpp",
-		"%{prj.name}/vendor/GLM/glm/**.inl"
+		"%{prj.name}/vendor/GLM/glm/**.inl",
+	}
+
+	defines
+	{
+		"_CRT_SECURE_NO_WARNINGS"
 	}
 
 	includedirs
@@ -62,42 +68,36 @@ project "Rebelle"
 	}
 	
 	filter "system:windows"
-		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
 		{
 			"RBL_PLATFORM_WINDOWS",
 			"RBL_BUILD_DLL",
-			"GLFW_INCLUDE_NONE",
-			"IMGUI_IMPL_OPENGL_LOADER_GLAD"
-		}
-
-		postbuildcommands
-		{
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+			"GLFW_INCLUDE_NONE"
 		}
 
 	filter "configurations:Debug"
 		defines "RBL_DEBUG"
-		buildoptions "/MDd"
-		symbols "On"
+		runtime "Debug"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "RBL_RELEASE"
-		buildoptions "/MD"
-		optimize "On"
+		runtime "Release"
+		symbols "on"
 
 	filter "configurations:Dist"
 		defines "RBL_DIST"
-		buildoptions "/MD"
-		optimize "On"
+		runtime "Release"
+		symbols "on"
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir  ("bin/" .. outputdir  .. "/%{prj.name}")
 	objdir  ("bin-int/" .. outputdir  .. "/%{prj.name}")
@@ -112,7 +112,8 @@ project "Sandbox"
 	{
 		"Rebelle/vendor/spdlog/include",
 		"Rebelle/src",
-		"%{IncludeDir.GLM}"
+		"Rebelle/vendor",
+		"%{IncludeDir.GLM}",
 	}
 
 	links 
@@ -121,8 +122,6 @@ project "Sandbox"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -132,15 +131,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "RBL_DEBUG"
-		buildoptions "/MDd"
-		symbols "On"
+		symbols "on"
+		runtime "Debug"
 
 	filter "configurations:Release"
 		defines "RBL_RELEASE"
-		buildoptions "/MD"
-		optimize "On"
+		optimize "on"
+		runtime "Release"
 
 	filter "configurations:Dist"
 		defines "RBL_DIST"
-		buildoptions "/MD"
-		optimize "On"
+		optimize "on"
+		runtime "Release"

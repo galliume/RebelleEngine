@@ -57,7 +57,7 @@ namespace Rebelle {
 
 	protected:
 		MouseButtonEvent(int button) : m_Button(button) {}
-		float m_Button;
+		int m_Button;
 	};
 
 	class REBELLE_API MouseButtonPressedEvent : public MouseButtonEvent

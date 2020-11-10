@@ -1,34 +1,28 @@
-project "Imgui"
+project "ImGui"
     kind "StaticLib"
-	language "C++"
-	cppdialect "C++17"
+    language "C++"
     
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-    
-files
-	{
-        "include/imconfig.h",
-        "include/imgui.h",
-        "include/imstb_rectpack.h",
-        "include/imstb_textedit.h",
-        "include/imstb_truetype.h",
-		"include/imgui_internal.h",
-        "src/imgui.cpp",
-        "src/imgui_draw.cpp",      
-        "src/imgui_widgets.cpp",
-        "src/imgui_demo.cpp"
-    }
-    
-    includedirs
+
+    files
     {
-        "include"
+        "imconfig.h",
+        "imgui.h",
+        "imgui.cpp",
+        "imgui_draw.cpp",
+        "imgui_internal.h",
+        "imgui_widgets.cpp",
+        "imstb_rectpack.h",
+        "imstb_textedit.h",
+        "imstb_truetype.h",
+        "imgui_demo.cpp",
     }
-
-	filter "system:windows"
+    
+    filter "system:windows"
         systemversion "latest"
-        staticruntime "On"
-		cppdialect "C++17"
-
+        cppdialect "C++17"
+        staticruntime "on"
+        
     filter { "system:windows", "configurations:Release" }
         buildoptions "/MT"
