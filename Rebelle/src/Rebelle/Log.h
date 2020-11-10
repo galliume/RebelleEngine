@@ -20,7 +20,7 @@ namespace Rebelle
 	};
 }
 
-#define RBL_CORE_FATAL(...) ::Rebelle::Log::GetCoreLogger()->fatal(__VA_ARGS__)
+#define RBL_CORE_FATAL(...) ::Rebelle::Log::GetCoreLogger()->critical(__VA_ARGS__)
 #define RBL_CORE_ERROR(...) ::Rebelle::Log::GetCoreLogger()->error(__VA_ARGS__)
 #define RBL_CORE_WARN(...) ::Rebelle::Log::GetCoreLogger()->warn(__VA_ARGS__)
 #define RBL_CORE_INFO(...) ::Rebelle::Log::GetCoreLogger()->info(__VA_ARGS__)

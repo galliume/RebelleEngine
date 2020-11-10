@@ -1,5 +1,4 @@
 #include <Rebelle.h>
-#include "IMGUI/imgui.h"
 
 class ExampleLayer : public Rebelle::Layer
 {
@@ -17,9 +16,7 @@ public:
 	}
 	virtual void OnImGuiRender() override
 	{
-		ImGui::Begin("Test");
-		ImGui::Text("Hello World");
-		ImGui::End();
+
 	}
 };
 class SandBox : public Rebelle::Application

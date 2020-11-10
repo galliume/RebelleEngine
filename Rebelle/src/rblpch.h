@@ -15,6 +15,8 @@
 
 #include "Rebelle/Log.h"
 
+#define GLFW_INCLUDE_VULKAN
+
 #ifdef RBL_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif

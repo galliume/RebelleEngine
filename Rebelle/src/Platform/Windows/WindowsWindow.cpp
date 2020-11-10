@@ -5,8 +5,10 @@
 #include "Rebelle/Events/ApplicationEvent.h"
 #include "Rebelle/Events/MouseEvent.h"
 #include "Rebelle/Events/KeyEvent.h"
+#include "Rebelle/Renderer/Vulkan.h"
 
 #include <Glad/glad.h>
+#include "glm/glm.hpp"
 
 namespace Rebelle {
 
@@ -46,8 +48,10 @@ namespace Rebelle {
 			s_GLFWInitialized = true;
 		}
 
+		glfwWindowHint(GLFW_CLIENT_API, GLFW_OPENGL_API);
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-		
+		glfwMakeContextCurrent(m_Window);
+
 		GLFWimage images[1];
 		int width, height, components;
 		std::string str = "src/assets/icons/rebelle.png";
@@ -65,7 +69,9 @@ namespace Rebelle {
 
 		stbi_image_free(data);
 
-		glfwMakeContextCurrent(m_Window);
+		Vulkan vulkan;
+		vulkan.init();
+
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		RBL_CORE_ASSERT(status, "failed to initialize glad");
 
@@ -172,6 +178,7 @@ namespace Rebelle {
 	void WindowsWindow::Shutdown()
 	{
 		glfwDestroyWindow(m_Window);
+		glfwTerminate();
 	}
 
 	void WindowsWindow::OnUpdate()

@@ -40,7 +40,7 @@ project "Rebelle"
 		"%{prj.name}/vendor/stb_image/**.h",
 		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/GLM/glm/**.hpp",
-		"%{prj.name}/vendor/GLM/glm/**.inl",
+		"%{prj.name}/vendor/GLM/glm/**.inl"
 	}
 
 	defines
@@ -56,15 +56,16 @@ project "Rebelle"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.IMGUI}",
-		"%{IncludeDir.GLM}"
+		"%{IncludeDir.GLM}",
+		"C:/VulkanSDK/1.2.154.1/Include"
 	}
 
 	links 
-	{
+	{		
 		"GLFW",
 		"Glad",
-		"IMGUI",		
-		"opengl32.lib"
+		"IMGUI",
+		"C:/VulkanSDK/1.2.154.1/Lib/vulkan-1.lib"
 	}
 	
 	filter "system:windows"
@@ -114,11 +115,14 @@ project "Sandbox"
 		"Rebelle/src",
 		"Rebelle/vendor",
 		"%{IncludeDir.GLM}",
+		"%{IncludeDir.IMGUI}",
+		"C:/VulkanSDK/1.2.154.1/Include"
 	}
 
 	links 
 	{
-		"Rebelle"
+		"Rebelle",
+		"C:/VulkanSDK/1.2.154.1/Lib/vulkan-1.lib"
 	}
 
 	filter "system:windows"
