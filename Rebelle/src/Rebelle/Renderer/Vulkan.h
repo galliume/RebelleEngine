@@ -23,8 +23,11 @@ namespace Rebelle {
 		bool enableValidationLayers = true;
 		const std::vector<const char*> validationLayers = { "VK_LAYER_KHRONOS_validation" };
 		VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
+		VkDevice device;
+		VkQueue graphicsQueue;
 	private:
 		void createInstance();
+		void createLogicalDevice();
 		QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
 		void pickPhysicalDevice();
 		bool isDeviceSuitable(VkPhysicalDevice device);
