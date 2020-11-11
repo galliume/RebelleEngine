@@ -2,6 +2,7 @@
 
 #include "rblpch.h"
 #include "Rebelle/Window.h"
+#include "Rebelle/Renderer/Vulkan.h"
 
 #include <GLFW/glfw3.h>
 
@@ -34,7 +35,7 @@ namespace Rebelle {
 		virtual void Shutdown();
 	private:
 		GLFWwindow* m_Window;
-
+		Vulkan m_vulkan;
 		struct WindowData
 		{
 			std::string Title;

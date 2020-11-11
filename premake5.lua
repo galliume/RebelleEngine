@@ -116,12 +116,14 @@ project "Sandbox"
 		"Rebelle/vendor",
 		"%{IncludeDir.GLM}",
 		"%{IncludeDir.IMGUI}",
+		"%{IncludeDir.GLFW}",
 		"C:/VulkanSDK/1.2.154.1/Include"
 	}
 
 	links 
 	{
 		"Rebelle",
+		"GLFW",
 		"C:/VulkanSDK/1.2.154.1/Lib/vulkan-1.lib"
 	}
 

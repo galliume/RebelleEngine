@@ -79,7 +79,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>RBL_PLATFORM_WINDOWS;RBL_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Rebelle\vendor\spdlog\include;..\Rebelle\src;..\Rebelle\vendor;..\Rebelle\vendor\GLM;..\Rebelle\vendor\IMGUI;C:\VulkanSDK\1.2.154.1\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Rebelle\vendor\spdlog\include;..\Rebelle\src;..\Rebelle\vendor;..\Rebelle\vendor\GLM;..\Rebelle\vendor\IMGUI;..\Rebelle\vendor\GLFW\include;C:\VulkanSDK\1.2.154.1\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -96,7 +96,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>RBL_PLATFORM_WINDOWS;RBL_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Rebelle\vendor\spdlog\include;..\Rebelle\src;..\Rebelle\vendor;..\Rebelle\vendor\GLM;..\Rebelle\vendor\IMGUI;C:\VulkanSDK\1.2.154.1\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Rebelle\vendor\spdlog\include;..\Rebelle\src;..\Rebelle\vendor;..\Rebelle\vendor\GLM;..\Rebelle\vendor\IMGUI;..\Rebelle\vendor\GLFW\include;C:\VulkanSDK\1.2.154.1\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -117,7 +117,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>RBL_PLATFORM_WINDOWS;RBL_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Rebelle\vendor\spdlog\include;..\Rebelle\src;..\Rebelle\vendor;..\Rebelle\vendor\GLM;..\Rebelle\vendor\IMGUI;C:\VulkanSDK\1.2.154.1\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Rebelle\vendor\spdlog\include;..\Rebelle\src;..\Rebelle\vendor;..\Rebelle\vendor\GLM;..\Rebelle\vendor\IMGUI;..\Rebelle\vendor\GLFW\include;C:\VulkanSDK\1.2.154.1\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -139,6 +139,9 @@
   <ItemGroup>
     <ProjectReference Include="..\Rebelle\Rebelle.vcxproj">
       <Project>{20B8A69E-8C97-253A-95AF-B010010E8C9B}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Rebelle\vendor\GLFW\GLFW.vcxproj">
+      <Project>{154B857C-0182-860D-AA6E-6C109684020F}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -3,7 +3,6 @@
 class ExampleLayer : public Rebelle::Layer
 {
 public:
-	ExampleLayer() : Layer("Example") {}
 
 	void OnUpdate() override
 	{
@@ -24,7 +23,6 @@ class SandBox : public Rebelle::Application
 	public:
 		SandBox()
 		{
-			PushLayer(new ExampleLayer());
 		}
 
 		~SandBox()

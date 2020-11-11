@@ -49,8 +49,9 @@ namespace Rebelle {
 		}
 
 		glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
+		glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+		GLFWwindow* m_Window = glfwCreateWindow(800, 600, "ISSOU VULKANISE", nullptr, nullptr);
+		m_vulkan.init(m_Window);
 
 		GLFWimage images[1];
 		int width, height, components;
@@ -69,15 +70,8 @@ namespace Rebelle {
 
 		stbi_image_free(data);
 
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		RBL_CORE_ASSERT(status, "failed to initialize glad");
-
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
-
-
-		Vulkan vulkan(m_Window);
-		vulkan.init();
 
 		//callback with lambda
 		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)
@@ -178,6 +172,7 @@ namespace Rebelle {
 
 	void WindowsWindow::Shutdown()
 	{
+		m_vulkan.cleanUp();
 		glfwDestroyWindow(m_Window);
 		glfwTerminate();
 	}
@@ -185,7 +180,8 @@ namespace Rebelle {
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_vulkan.drawFrame();
+		//glfwSwapBuffers(m_Window);
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)

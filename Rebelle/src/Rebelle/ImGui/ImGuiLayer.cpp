@@ -3,15 +3,16 @@
 #include "ImGuiLayer.h"
 #include "imgui.h"
 #include "backends/imgui_impl_glfw.h"
-#include "backends/imgui_impl_opengl3.h"
+#include "backends/imgui_impl_vulkan.h"
 
 //@todo why include .cpp ? without them it does not work...
 #include "backends/imgui_impl_glfw.cpp"
-#include "backends/imgui_impl_opengl3.cpp"
+#include "backends/imgui_impl_vulkan.cpp"
 
 #include "Rebelle/Macros.h"
 #include "Rebelle/Application.h"
-
+#include "Rebelle/Renderer/Vulkan.h"
+#include "Rebelle/Renderer/Vulkan.h"
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 
@@ -31,10 +32,14 @@ namespace Rebelle {
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
 		ImGuiIO& io = ImGui::GetIO(); (void)io;
-		io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
+		unsigned char* tex_pixels = NULL;
+		int tex_w, tex_h;
+		io.Fonts->GetTexDataAsRGBA32(&tex_pixels, &tex_w, &tex_h);
+
+		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
 		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
 		io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
-		io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
+		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
 		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsNoTaskBarIcons;
 		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsNoMerge;
 
@@ -52,24 +57,44 @@ namespace Rebelle {
 
 		Application& app = Application::Get();
 		GLFWwindow* window = static_cast<GLFWwindow*>(app.GetWindow().GetNativeWindow());
+		io.DisplaySize = ImVec2((float)app.GetWindow().GetWidth(), (float)app.GetWindow().GetHeight());
+		Vulkan vulkan = Vulkan::Get();
 
 		// Setup Platform/Renderer bindings
-		ImGui_ImplGlfw_InitForOpenGL(window, true);
-		ImGui_ImplOpenGL3_Init("#version 410");
+		ImGui_ImplVulkan_InitInfo init_info = {};
+		init_info.Instance = vulkan.getInstance();
+		init_info.PhysicalDevice = vulkan.getPhysicalDevice();
+		init_info.Device = vulkan.getDevice();
+		init_info.QueueFamily = vulkan.getQueueFamily();
+		init_info.Queue = vulkan.getQueue();
+		init_info.PipelineCache = VK_NULL_HANDLE;
+		init_info.DescriptorPool = vulkan.getDescriporPool();
+		init_info.Allocator = VK_NULL_HANDLE;
+		init_info.MinImageCount = vulkan.getMinImageCount();
+		init_info.ImageCount = vulkan.getImageCount();
+		ImGui_ImplVulkan_Init(&init_info, vulkan.getRenderPass());
+
+		ImGui_ImplVulkan_NewFrame();
+		ImGui::NewFrame();
+		ImGui_ImplGlfw_NewFrame();
+
+		ImFont* font = io.Fonts->AddFontFromFileTTF("C:/Windows/Fonts/Arial.ttf", 18.0f, NULL, io.Fonts->GetGlyphRangesJapanese());
+		ImGui::PushFont(font);
 	}
 
 	void ImGuiLayer::OnDetach()
 	{
-		ImGui_ImplOpenGL3_Shutdown();
+		ImGui_ImplVulkan_Shutdown();
 		ImGui_ImplGlfw_Shutdown();
 		ImGui::DestroyContext();
 	}
 
 	void ImGuiLayer::Begin()
 	{
-		ImGui_ImplOpenGL3_NewFrame();
-		ImGui_ImplGlfw_NewFrame();
+		RBL_CORE_TRACE("yopiu");
+		ImGui_ImplVulkan_NewFrame();
 		ImGui::NewFrame();
+		ImGui_ImplGlfw_NewFrame();
 	}
 
 	void ImGuiLayer::End()
@@ -77,10 +102,11 @@ namespace Rebelle {
 		ImGuiIO& io = ImGui::GetIO();
 		Application& app = Application::Get();
 		io.DisplaySize = ImVec2((float)app.GetWindow().GetWidth(), (float)app.GetWindow().GetHeight());
+		Vulkan vulkan = Vulkan::Get();
 
 		// Rendering
 		ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+		ImGui_ImplVulkan_RenderDrawData(ImGui::GetDrawData(), vulkan.getCommandBuffers()[0]);
 
 		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
 		{
@@ -94,6 +120,7 @@ namespace Rebelle {
 	void ImGuiLayer::OnImGuiRender()
 	{
 		static bool show = true;
+		RBL_CORE_TRACE("YES");
 		ImGui::ShowDemoWindow(&show);
 	}
 }
