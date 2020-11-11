@@ -69,14 +69,15 @@ namespace Rebelle {
 
 		stbi_image_free(data);
 
-		Vulkan vulkan;
-		vulkan.init();
-
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		RBL_CORE_ASSERT(status, "failed to initialize glad");
 
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
+
+
+		Vulkan vulkan(m_Window);
+		vulkan.init();
 
 		//callback with lambda
 		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)
