@@ -1,6 +1,6 @@
 project "vulkan"
     kind "StaticLib"
-    language "C"
+    language "C++"
     
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -8,12 +8,27 @@ project "vulkan"
 	files
 	{
         "Include/vulkan/*.h",
-        "Lib/vulkan-1.lib"
     }
 
     includedirs {
         "Include"
     }
     
+    filter "system:windows"
+        buildoptions { "-std=c11", "-lgdi32" }
+        systemversion "latest"
+        staticruntime "on"
+        
+        files
+        {
+            "Include/vulkan/vulkan.hpp"
+        }
+
+		defines 
+		{ 
+            "_GLFW_WIN32",
+            "_CRT_SECURE_NO_WARNINGS"
+        }
+
     filter { "system:windows", "configurations:Release" }
         buildoptions "/MT"

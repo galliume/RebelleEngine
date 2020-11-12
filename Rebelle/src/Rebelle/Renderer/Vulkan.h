@@ -25,6 +25,7 @@ namespace Rebelle {
 		Vulkan();
 		inline static Vulkan& Get() { return *s_Instance; }
 		inline void setWindow(GLFWwindow* glfwWindow) { window = glfwWindow; };
+		inline GLFWwindow* getWindow() { return window; };
 		inline VkInstance getInstance() { return instance; };
 		inline VkSurfaceKHR* getSurface() { return &surface; };
 		inline VkRenderPass getRenderPass() { return renderPass; };
@@ -40,10 +41,11 @@ namespace Rebelle {
 		void cleanUp();
 		void drawFrame();
 		void run();
+		static void framebufferResizeCallback(GLFWwindow* window, int width, int height);
 	private:
 		static Vulkan* s_Instance;
-		uint32_t imageCount;
-		uint32_t minImageCount;
+		uint32_t imageCount = 2;
+		uint32_t minImageCount = 2;
 		uint32_t queueFamily;
 		const uint32_t WIDTH = 800;
 		const uint32_t HEIGHT = 600;
@@ -72,10 +74,11 @@ namespace Rebelle {
 		std::vector<VkCommandBuffer> commandBuffers;
 		std::vector<VkSemaphore> imageAvailableSemaphores;
 		std::vector<VkSemaphore> renderFinishedSemaphores;		
-		std::vector<VkFence> inFlightFences;
 		std::vector<VkFence> imagesInFlight;
-		size_t currentFrame = 0;
 		VkDescriptorPool descriptorPool;
+		std::vector<VkFence> inFlightFences;
+		size_t currentFrame = 0;
+		bool framebufferResized = false;
 	private:
 		void createInstance();
 		void createGraphicsPipeline();
@@ -103,5 +106,7 @@ namespace Rebelle {
 		void createCommandBuffers();
 		void createSyncObjects();
 		void createDescriptorPool();
+		void recreateSwapChain();
+		void cleanupSwapChain();
 	};
 }

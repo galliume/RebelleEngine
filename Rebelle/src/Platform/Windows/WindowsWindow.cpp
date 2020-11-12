@@ -49,8 +49,10 @@ namespace Rebelle {
 		}
 
 		glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-		glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+		glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
 		GLFWwindow* m_Window = glfwCreateWindow(800, 600, "ISSOU VULKANISE", nullptr, nullptr);
+		glfwSetWindowUserPointer(m_Window, &m_vulkan);
+		glfwSetFramebufferSizeCallback(m_Window, m_vulkan.framebufferResizeCallback);
 		m_vulkan.init(m_Window);
 
 		GLFWimage images[1];
@@ -71,7 +73,6 @@ namespace Rebelle {
 		stbi_image_free(data);
 
 		glfwSetWindowUserPointer(m_Window, &m_Data);
-		SetVSync(true);
 
 		//callback with lambda
 		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)
@@ -179,19 +180,14 @@ namespace Rebelle {
 
 	void WindowsWindow::OnUpdate()
 	{
-		glfwPollEvents();
 		m_vulkan.drawFrame();
+
 		//glfwSwapBuffers(m_Window);
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)
 	{
-		if (enabled)
-			glfwSwapInterval(1);
-		else
-			glfwSwapInterval(0);
 
-		m_Data.VSync = enabled;
 	}
 
 	bool WindowsWindow::IsVSync() const

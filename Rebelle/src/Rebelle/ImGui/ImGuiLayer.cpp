@@ -12,7 +12,6 @@
 #include "Rebelle/Macros.h"
 #include "Rebelle/Application.h"
 #include "Rebelle/Renderer/Vulkan.h"
-#include "Rebelle/Renderer/Vulkan.h"
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 
@@ -39,7 +38,7 @@ namespace Rebelle {
 		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
 		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
 		io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
-		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
+		io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
 		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsNoTaskBarIcons;
 		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsNoMerge;
 
@@ -60,6 +59,12 @@ namespace Rebelle {
 		io.DisplaySize = ImVec2((float)app.GetWindow().GetWidth(), (float)app.GetWindow().GetHeight());
 		Vulkan vulkan = Vulkan::Get();
 
+		ImFontAtlas fontAtlas = ImFontAtlas();
+		fontAtlas.AddFontFromFileTTF("C:/Windows/Fonts/Arial.ttf", 18.0f, NULL, io.Fonts->GetGlyphRangesJapanese());
+		ImGui::CreateContext(&fontAtlas);
+
+		ImGui_ImplGlfw_InitForVulkan(vulkan.getWindow(), true);
+
 		// Setup Platform/Renderer bindings
 		ImGui_ImplVulkan_InitInfo init_info = {};
 		init_info.Instance = vulkan.getInstance();
@@ -73,13 +78,6 @@ namespace Rebelle {
 		init_info.MinImageCount = vulkan.getMinImageCount();
 		init_info.ImageCount = vulkan.getImageCount();
 		ImGui_ImplVulkan_Init(&init_info, vulkan.getRenderPass());
-
-		ImGui_ImplVulkan_NewFrame();
-		ImGui::NewFrame();
-		ImGui_ImplGlfw_NewFrame();
-
-		ImFont* font = io.Fonts->AddFontFromFileTTF("C:/Windows/Fonts/Arial.ttf", 18.0f, NULL, io.Fonts->GetGlyphRangesJapanese());
-		ImGui::PushFont(font);
 	}
 
 	void ImGuiLayer::OnDetach()
@@ -106,7 +104,14 @@ namespace Rebelle {
 
 		// Rendering
 		ImGui::Render();
-		ImGui_ImplVulkan_RenderDrawData(ImGui::GetDrawData(), vulkan.getCommandBuffers()[0]);
+
+		std::vector<VkCommandBuffer>listCmdBuffers = vulkan.getCommandBuffers();
+
+		for (int i = 0; i < listCmdBuffers.size(); i++)
+		{
+			VkCommandBuffer cmdBuffer = listCmdBuffers[i];
+			ImGui_ImplVulkan_RenderDrawData(ImGui::GetDrawData(), cmdBuffer);
+		}
 
 		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
 		{
@@ -120,7 +125,6 @@ namespace Rebelle {
 	void ImGuiLayer::OnImGuiRender()
 	{
 		static bool show = true;
-		RBL_CORE_TRACE("YES");
 		ImGui::ShowDemoWindow(&show);
 	}
 }
