@@ -1,9 +1,0 @@
-[submodule "Rebelle/vendor/spdlog"]
-	path = Rebelle/vendor/spdlog
-	url = http://github.com/gabime/spdlog
-[submodule "Rebelle/vendor/GLFW"]
-	path = Rebelle/vendor/GLFW
-	url = https://github.com/galliume/glfw
-[submodule "Rebelle/vendor/GLM"]
-	path = Rebelle/vendor/GLM
-	url = https://github.com/g-truc/glm.git
