@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImGui", "Rebelle\vendor\IMG
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Rebelle", "Rebelle\Rebelle.vcxproj", "{20B8A69E-8C97-253A-95AF-B010010E8C9B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vulkan", "Rebelle\vendor\vulkan\vulkan.vcxproj", "{F6FEA123-E2A0-CCF9-CB5B-E04DB79C534A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -48,6 +50,12 @@ Global
 		{20B8A69E-8C97-253A-95AF-B010010E8C9B}.Dist|x64.Build.0 = Dist|x64
 		{20B8A69E-8C97-253A-95AF-B010010E8C9B}.Release|x64.ActiveCfg = Release|x64
 		{20B8A69E-8C97-253A-95AF-B010010E8C9B}.Release|x64.Build.0 = Release|x64
+		{F6FEA123-E2A0-CCF9-CB5B-E04DB79C534A}.Debug|x64.ActiveCfg = Debug|x64
+		{F6FEA123-E2A0-CCF9-CB5B-E04DB79C534A}.Debug|x64.Build.0 = Debug|x64
+		{F6FEA123-E2A0-CCF9-CB5B-E04DB79C534A}.Dist|x64.ActiveCfg = Dist|x64
+		{F6FEA123-E2A0-CCF9-CB5B-E04DB79C534A}.Dist|x64.Build.0 = Dist|x64
+		{F6FEA123-E2A0-CCF9-CB5B-E04DB79C534A}.Release|x64.ActiveCfg = Release|x64
+		{F6FEA123-E2A0-CCF9-CB5B-E04DB79C534A}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

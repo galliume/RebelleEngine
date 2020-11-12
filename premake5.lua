@@ -15,10 +15,12 @@ IncludeDir["GLFW"] = "Rebelle/vendor/GLFW/include"
 IncludeDir["Glad"] = "Rebelle/vendor/Glad/include"
 IncludeDir["IMGUI"] = "Rebelle/vendor/IMGUI"
 IncludeDir["GLM"] = "Rebelle/vendor/GLM"
+IncludeDir["vulkan"] = "Rebelle/vendor/vulkan/include"
 
 include "Rebelle/vendor/GLFW"
 include "Rebelle/vendor/Glad"
 include "Rebelle/vendor/IMGUI"
+include "Rebelle/vendor/vulkan"
 
 project "Rebelle"
 	location "Rebelle"
@@ -57,7 +59,7 @@ project "Rebelle"
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.IMGUI}",
 		"%{IncludeDir.GLM}",
-		"C:/VulkanSDK/1.2.154.1/Include"
+		"%{IncludeDir.vulkan}"
 	}
 
 	links 
@@ -65,7 +67,7 @@ project "Rebelle"
 		"GLFW",
 		"Glad",
 		"IMGUI",
-		"C:/VulkanSDK/1.2.154.1/Lib/vulkan-1.lib"
+		"Rebelle/vendor/vulkan/Lib/vulkan-1.lib"
 	}
 	
 	filter "system:windows"
@@ -117,14 +119,14 @@ project "Sandbox"
 		"%{IncludeDir.GLM}",
 		"%{IncludeDir.IMGUI}",
 		"%{IncludeDir.GLFW}",
-		"C:/VulkanSDK/1.2.154.1/Include"
+		"%{IncludeDir.vulkan}"
 	}
 
 	links 
 	{
 		"Rebelle",
 		"GLFW",
-		"C:/VulkanSDK/1.2.154.1/Lib/vulkan-1.lib"
+		"Rebelle/vendor/vulkan/Lib/vulkan-1.lib"
 	}
 
 	filter "system:windows"
