@@ -1,10 +1,12 @@
 #pragma once
+#define GLFW_INCLUDE_VULKAN
 
 #include "rblpch.h"
-#define GLFW_INCLUDE_VULKAN
-#include <GLFW/glfw3.h>
+#include "GLFW/glfw3.h"
+#include "glm/glm.hpp"
 #include <optional>
-
+#include <array>
+#include <cstddef>
 namespace Rebelle {
 	struct QueueFamilyIndices 
 	{
@@ -18,7 +20,37 @@ namespace Rebelle {
 		std::vector<VkSurfaceFormatKHR> formats;
 		std::vector<VkPresentModeKHR> presentModes;
 	};
+	struct Vertex 
+	{
+		glm::vec2 pos;
+		glm::vec3 color;
 
+		static VkVertexInputBindingDescription getBindingDescription() 
+		{
+			VkVertexInputBindingDescription bindingDescription{};
+			bindingDescription.binding = 0;
+			bindingDescription.stride = sizeof(Vertex);
+			bindingDescription.inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
+
+			return bindingDescription;
+		}
+		static std::array<VkVertexInputAttributeDescription, 2> getAttributeDescriptions() 
+		{
+			std::array<VkVertexInputAttributeDescription, 2> attributeDescriptions{};
+
+			attributeDescriptions[0].binding = 0;
+			attributeDescriptions[0].location = 0;
+			attributeDescriptions[0].format = VK_FORMAT_R32G32_SFLOAT;
+			attributeDescriptions[0].offset = offsetof(Vertex, pos);
+
+			attributeDescriptions[1].binding = 0;
+			attributeDescriptions[1].location = 1;
+			attributeDescriptions[1].format = VK_FORMAT_R32G32B32_SFLOAT;
+			attributeDescriptions[1].offset = offsetof(Vertex, color);
+
+			return attributeDescriptions;
+		}
+	};
 	class Vulkan
 	{
 	public:
@@ -42,6 +74,7 @@ namespace Rebelle {
 		void drawFrame();
 		void run();
 		static void framebufferResizeCallback(GLFWwindow* window, int width, int height);
+		VkFormat getSwapChainFormat() { return swapChainImageFormat; };
 	private:
 		static Vulkan* s_Instance;
 		uint32_t imageCount = 2;
@@ -79,6 +112,20 @@ namespace Rebelle {
 		std::vector<VkFence> inFlightFences;
 		size_t currentFrame = 0;
 		bool framebufferResized = false;
+		const std::vector<Vertex> vertices = {
+			{{-0.5f, -0.5f}, {1.0f, 0.0f, 0.0f}},
+			{{0.5f, -0.5f}, {0.0f, 1.0f, 0.0f}},
+			{{0.5f, 0.5f}, {0.0f, 0.0f, 1.0f}},
+			{{-0.5f, 0.5f}, {1.0f, 1.0f, 1.0f}}
+		};
+		const std::vector<uint16_t> indices = 
+		{
+			0, 1, 2, 2, 3, 0
+		};
+		VkBuffer vertexBuffer;
+		VkDeviceMemory vertexBufferMemory;
+		VkBuffer indexBuffer;
+		VkDeviceMemory indexBufferMemory;
 	private:
 		void createInstance();
 		void createGraphicsPipeline();
@@ -105,8 +152,12 @@ namespace Rebelle {
 		void createCommandPool();
 		void createCommandBuffers();
 		void createSyncObjects();
-		void createDescriptorPool();
 		void recreateSwapChain();
 		void cleanupSwapChain();
+		void createVertexBuffer();
+		uint32_t findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties);
+		void createBuffer(VkDeviceSize size, VkBufferUsageFlags usage, VkMemoryPropertyFlags properties, VkBuffer& buffer, VkDeviceMemory& bufferMemory);
+		void copyBuffer(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSize size);
+		void createIndexBuffer();
 	};
 }
