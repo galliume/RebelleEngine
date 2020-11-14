@@ -4,7 +4,6 @@
 
 #include "Rebelle/Core.h"
 #include "Rebelle/Events/Event.h"
-#include "Rebelle/Renderer/Vulkan.h"
 
 namespace Rebelle {
 

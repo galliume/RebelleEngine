@@ -75,15 +75,6 @@ namespace Rebelle {
 
         s_Instance = this;
     }
-    void Vulkan::run()
-    {
-        while (!glfwWindowShouldClose(window))
-        {
-            glfwPollEvents();
-            drawFrame();
-        }
-        vkDeviceWaitIdle(device);
-    }
     void Vulkan::init(GLFWwindow* glfWwindow)
     {
         window = glfWwindow;
@@ -914,6 +905,7 @@ namespace Rebelle {
         createFramebuffers();
         createUniformBuffers();
         createDescriptorPool();
+        createDescriptorSets();
         createCommandBuffers();
     }
     void Vulkan::createSyncObjects()
@@ -1198,7 +1190,7 @@ namespace Rebelle {
         VkDescriptorPoolSize poolSize{};
         poolSize.type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
         poolSize.descriptorCount = static_cast<uint32_t>(swapChainImages.size());
-
+        RBL_CORE_TRACE("PS {0}", poolSize.descriptorCount);
         VkDescriptorPoolCreateInfo poolInfo{};
         poolInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO;
         poolInfo.poolSizeCount = 1;

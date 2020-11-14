@@ -71,12 +71,44 @@ namespace Rebelle {
 	public:
 		Vulkan();
 		inline static Vulkan& Get() { return *s_Instance; }
+
+		void createInstance();
+		inline VkInstance getInstance() { return instance; };
+		void createSurface();
+		inline VkSurfaceKHR* getSurface() { return &surface; };
+		
+		void pickPhysicalDevice();
+		void createLogicalDevice();
+		inline VkPhysicalDevice getPhysicalDevice() { return physicalDevice; };
+
+		void createDescriptorPool();
+		void createDescriptorSets();
+
+		void createSwapChain();		
+
+		void createDescriptorSetLayout();
+
+		void createUniformBuffers();
+		
+		void recreateSwapChain();
+
+		void createGraphicsPipeline();
+		void createImageViews();		
+
+		void createBuffer(VkDeviceSize size, VkBufferUsageFlags usage, VkMemoryPropertyFlags properties, VkBuffer& buffer, VkDeviceMemory& bufferMemory);
+		void createIndexBuffer();
+		void createGraphicsPipline();
+		void createRenderPass();
+		void createFramebuffers();
+		void createCommandPool();
+		void createCommandBuffers();
+		void createSyncObjects();
+		void cleanupSwapChain();
+		void createVertexBuffer();
+
 		inline void setWindow(GLFWwindow* glfwWindow) { window = glfwWindow; };
 		inline GLFWwindow* getWindow() { return window; };
-		inline VkInstance getInstance() { return instance; };
-		inline VkSurfaceKHR* getSurface() { return &surface; };
 		inline VkRenderPass getRenderPass() { return renderPass; };
-		inline VkPhysicalDevice getPhysicalDevice() { return physicalDevice; };
 		inline VkDevice getDevice() { return device; };
 		inline uint32_t getQueueFamily() { return queueFamily; };
 		inline VkQueue getQueue() { return graphicsQueue; };
@@ -87,9 +119,8 @@ namespace Rebelle {
 		void init(GLFWwindow* glfWwindow);
 		void cleanUp();
 		void drawFrame();
-		void run();
 		static void framebufferResizeCallback(GLFWwindow* window, int width, int height);
-		VkFormat getSwapChainFormat() { return swapChainImageFormat; };
+		inline size_t getCurrentFrame() { return currentFrame; };
 	private:
 		static Vulkan* s_Instance;
 		uint32_t imageCount = 2;
@@ -136,18 +167,11 @@ namespace Rebelle {
 		VkDescriptorPool descriptorPool;
 		std::vector<VkDescriptorSet> descriptorSets;
 	private:
-		void createInstance();
-		void createGraphicsPipeline();
-		void createImageViews();
-		void createSwapChain();
 		SwapChainSupportDetails querySwapChainSupport(VkPhysicalDevice device);
-		void createSurface();
 		VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR& capabilities);
 		VkPresentModeKHR chooseSwapPresentMode(const std::vector<VkPresentModeKHR>& availablePresentModes);
 		VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats);
-		void createLogicalDevice();
-		QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
-		void pickPhysicalDevice();
+		QueueFamilyIndices findQueueFamilies(VkPhysicalDevice device);		
 		bool isDeviceSuitable(VkPhysicalDevice device);
 		bool checkDeviceExtensionSupport(VkPhysicalDevice device);
 		void populateDebugMessengerCreateInfo(VkDebugUtilsMessengerCreateInfoEXT& createInfo);
@@ -155,23 +179,8 @@ namespace Rebelle {
 		bool checkValidationLayerSupport();
 		std::vector<const char*> getRequiredExtensions();
 		VkShaderModule createShaderModule(const std::vector<char>& code);
-		void createGraphicsPipline();
-		void createRenderPass();
-		void createFramebuffers();
-		void createCommandPool();
-		void createCommandBuffers();
-		void createSyncObjects();
-		void recreateSwapChain();
-		void cleanupSwapChain();
-		void createVertexBuffer();
 		uint32_t findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties);
-		void createBuffer(VkDeviceSize size, VkBufferUsageFlags usage, VkMemoryPropertyFlags properties, VkBuffer& buffer, VkDeviceMemory& bufferMemory);
 		void copyBuffer(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSize size);
-		void createIndexBuffer();
-		void createDescriptorSetLayout();
-		void createUniformBuffers();
 		void updateUniformBuffer(uint32_t currentImage);
-		void createDescriptorPool();
-		void createDescriptorSets();
 	};
 }

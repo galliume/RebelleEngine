@@ -5,10 +5,8 @@
 #include "Rebelle/Events/ApplicationEvent.h"
 #include "Rebelle/Events/MouseEvent.h"
 #include "Rebelle/Events/KeyEvent.h"
-#include "Rebelle/Renderer/Vulkan.h"
 
 #include <Glad/glad.h>
-#include "glm/glm.hpp"
 
 namespace Rebelle {
 
@@ -48,12 +46,7 @@ namespace Rebelle {
 			s_GLFWInitialized = true;
 		}
 
-		glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-		glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
-		GLFWwindow* m_Window = glfwCreateWindow(800, 600, "Vulkan Impl for RebelleEngine", nullptr, nullptr);
-		glfwSetWindowUserPointer(m_Window, &m_vulkan);
-		glfwSetFramebufferSizeCallback(m_Window, m_vulkan.framebufferResizeCallback);
-		m_vulkan.init(m_Window);
+		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 
 		GLFWimage images[1];
 		int width, height, components;
@@ -72,13 +65,18 @@ namespace Rebelle {
 
 		stbi_image_free(data);
 
+		glfwMakeContextCurrent(m_Window);
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		RBL_CORE_ASSERT(status, "failed to initialize glad");
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
+		SetVSync(true);
 
 		//callback with lambda
 		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)
 			{
 				//cast to WindowData struct
-				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);				
+				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 				data.Width = width;
 				data.Height = height;
 
@@ -89,7 +87,7 @@ namespace Rebelle {
 		glfwSetWindowCloseCallback(m_Window, [](GLFWwindow* window)
 			{
 				//cast to WindowData struct
-				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);				
+				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 				WindowCloseEvent event;
 				data.EventCallback(event);
 			});
@@ -101,24 +99,24 @@ namespace Rebelle {
 
 				switch (action)
 				{
-					case GLFW_PRESS:
-					{
-						KeyPressedEvent event(key, 0);
-						data.EventCallback(event);
-						break;
-					}
-					case GLFW_RELEASE:
-					{
-						KeyReleasedEvent event(key);
-						data.EventCallback(event);
-						break;
-					}
-					case GLFW_REPEAT:
-					{
-						KeyPressedEvent event(key, 1);
-						data.EventCallback(event);
-						break;
-					}
+				case GLFW_PRESS:
+				{
+					KeyPressedEvent event(key, 0);
+					data.EventCallback(event);
+					break;
+				}
+				case GLFW_RELEASE:
+				{
+					KeyReleasedEvent event(key);
+					data.EventCallback(event);
+					break;
+				}
+				case GLFW_REPEAT:
+				{
+					KeyPressedEvent event(key, 1);
+					data.EventCallback(event);
+					break;
+				}
 				}
 			});
 
@@ -129,18 +127,18 @@ namespace Rebelle {
 
 				switch (actions)
 				{
-					case GLFW_PRESS:
-					{
-						MouseButtonPressedEvent event(button);
-						data.EventCallback(event);
-						break;
-					}
-					case GLFW_RELEASE:
-					{
-						MouseButtonReleasedEvent event(button);
-						data.EventCallback(event);
-						break;
-					}
+				case GLFW_PRESS:
+				{
+					MouseButtonPressedEvent event(button);
+					data.EventCallback(event);
+					break;
+				}
+				case GLFW_RELEASE:
+				{
+					MouseButtonReleasedEvent event(button);
+					data.EventCallback(event);
+					break;
+				}
 				}
 			});
 
@@ -173,21 +171,23 @@ namespace Rebelle {
 
 	void WindowsWindow::Shutdown()
 	{
-		m_vulkan.cleanUp();
 		glfwDestroyWindow(m_Window);
-		glfwTerminate();
 	}
 
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		m_vulkan.drawFrame();
-		//glfwSwapBuffers(m_Window);
+		glfwSwapBuffers(m_Window);
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)
 	{
+		if (enabled)
+			glfwSwapInterval(1);
+		else
+			glfwSwapInterval(0);
 
+		m_Data.VSync = enabled;
 	}
 
 	bool WindowsWindow::IsVSync() const
