@@ -17,7 +17,7 @@
 
 namespace Rebelle {
 
-	ImGuiLayer::ImGuiLayer(): Layer("ImGuiLayer")
+	ImGuiLayer::ImGuiLayer() : Layer("ImGuiLayer")
 	{
 	}
 

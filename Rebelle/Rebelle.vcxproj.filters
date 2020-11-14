@@ -19,6 +19,9 @@
     <Filter Include="src\Rebelle\ImGui">
       <UniqueIdentifier>{A13A56E8-0D51-547E-56C8-DF9FC21D2506}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Rebelle\Renderer">
+      <UniqueIdentifier>{BD290071-A9B8-893A-52D7-9D353E459AE0}</UniqueIdentifier>
+    </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
     </Filter>
@@ -98,6 +101,9 @@
     </ClInclude>
     <ClInclude Include="src\Rebelle\MouseButtonCodes.h">
       <Filter>src\Rebelle</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Rebelle\Renderer\Vulkan.h">
+      <Filter>src\Rebelle\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Rebelle\Window.h">
       <Filter>src\Rebelle</Filter>
@@ -1357,6 +1363,9 @@
     </ClCompile>
     <ClCompile Include="src\Rebelle\Log.cpp">
       <Filter>src\Rebelle</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Rebelle\Renderer\Vulkan.cpp">
+      <Filter>src\Rebelle\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\rblpch.cpp">
       <Filter>src</Filter>

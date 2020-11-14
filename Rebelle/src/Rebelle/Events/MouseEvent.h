@@ -15,7 +15,7 @@ namespace Rebelle {
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "MouseMovedEvent: " << m_MouseX << ", " << m_MouseY;
+			//ss << "MouseMovedEvent: " << m_MouseX << ", " << m_MouseY;
 			return ss.str();
 		}
 
@@ -37,7 +37,7 @@ namespace Rebelle {
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "MouseScrolledEvent: " << m_XOffset << ", " << m_YOffset;
+			//ss << "MouseScrolledEvent: " << m_XOffset << ", " << m_YOffset;
 			return ss.str();
 		}
 
@@ -68,7 +68,7 @@ namespace Rebelle {
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "MouseButtonPressedEvent: " << m_Button;
+			//ss << "MouseButtonPressedEvent: " << m_Button;
 			return ss.str();
 		}
 
@@ -83,7 +83,7 @@ namespace Rebelle {
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "MouseButtonReleasedEvent: " << m_Button;
+			//ss << "MouseButtonReleasedEvent: " << m_Button;
 			return ss.str();
 		}
 

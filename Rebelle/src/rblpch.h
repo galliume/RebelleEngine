@@ -14,6 +14,7 @@
 #include <unordered_set>
 
 #include "Rebelle/Log.h"
+#include "vulkan/vulkan.h"
 
 #ifdef RBL_PLATFORM_WINDOWS
 	#include <Windows.h>

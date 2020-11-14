@@ -20,6 +20,7 @@ namespace Rebelle {
 	{
 		for (Layer* layer : m_Layers)
 		{
+			RBL_CORE_INFO("{0}", layer->GetName());
 			layer->OnUpdate();
 		}
 	}
