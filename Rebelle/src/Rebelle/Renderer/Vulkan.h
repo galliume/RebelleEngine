@@ -1,6 +1,6 @@
 #pragma once
 #define GLFW_INCLUDE_VULKAN
-
+#define GLM_FORCE_DEFAULT_ALIGNED_GENTYPES
 #include "rblpch.h"
 #include "GLFW/glfw3.h"
 #include "glm/glm.hpp"
@@ -50,6 +50,21 @@ namespace Rebelle {
 
 			return attributeDescriptions;
 		}
+	};
+	struct UniformBufferObject {
+		alignas(16) glm::mat4 model;
+		alignas(16) glm::mat4 view;
+		alignas(16) glm::mat4 proj;
+	};
+	const std::vector<Vertex> vertices = {
+	{{-0.5f, -0.5f}, {1.0f, 0.0f, 0.0f}},
+	{{0.5f, -0.5f}, {0.0f, 1.0f, 0.0f}},
+	{{0.5f, 0.5f}, {0.0f, 0.0f, 1.0f}},
+	{{-0.5f, 0.5f}, {1.0f, 1.0f, 1.0f}}
+	};
+	const std::vector<uint16_t> indices =
+	{
+		0, 1, 2, 2, 3, 0
 	};
 	class Vulkan
 	{
@@ -108,24 +123,18 @@ namespace Rebelle {
 		std::vector<VkSemaphore> imageAvailableSemaphores;
 		std::vector<VkSemaphore> renderFinishedSemaphores;		
 		std::vector<VkFence> imagesInFlight;
-		VkDescriptorPool descriptorPool;
 		std::vector<VkFence> inFlightFences;
 		size_t currentFrame = 0;
 		bool framebufferResized = false;
-		const std::vector<Vertex> vertices = {
-			{{-0.5f, -0.5f}, {1.0f, 0.0f, 0.0f}},
-			{{0.5f, -0.5f}, {0.0f, 1.0f, 0.0f}},
-			{{0.5f, 0.5f}, {0.0f, 0.0f, 1.0f}},
-			{{-0.5f, 0.5f}, {1.0f, 1.0f, 1.0f}}
-		};
-		const std::vector<uint16_t> indices = 
-		{
-			0, 1, 2, 2, 3, 0
-		};
 		VkBuffer vertexBuffer;
 		VkDeviceMemory vertexBufferMemory;
+		VkDescriptorSetLayout descriptorSetLayout;
 		VkBuffer indexBuffer;
 		VkDeviceMemory indexBufferMemory;
+		std::vector<VkBuffer> uniformBuffers;
+		std::vector<VkDeviceMemory> uniformBuffersMemory;
+		VkDescriptorPool descriptorPool;
+		std::vector<VkDescriptorSet> descriptorSets;
 	private:
 		void createInstance();
 		void createGraphicsPipeline();
@@ -159,5 +168,10 @@ namespace Rebelle {
 		void createBuffer(VkDeviceSize size, VkBufferUsageFlags usage, VkMemoryPropertyFlags properties, VkBuffer& buffer, VkDeviceMemory& bufferMemory);
 		void copyBuffer(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSize size);
 		void createIndexBuffer();
+		void createDescriptorSetLayout();
+		void createUniformBuffers();
+		void updateUniformBuffer(uint32_t currentImage);
+		void createDescriptorPool();
+		void createDescriptorSets();
 	};
 }
