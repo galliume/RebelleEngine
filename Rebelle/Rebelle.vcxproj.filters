@@ -7,6 +7,12 @@
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Platform\OpenGL">
+      <UniqueIdentifier>{35A49437-A105-7245-2A73-B8F796D3A804}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\Vulkan">
+      <UniqueIdentifier>{81084748-ED69-2456-76D7-6A08E2375B15}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Platform\Windows">
       <UniqueIdentifier>{5B054582-4794-CE4B-F0B2-E246DC20DFF1}</UniqueIdentifier>
     </Filter>
@@ -48,6 +54,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Vulkan\Vulkan.h">
+      <Filter>src\Platform\Vulkan</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
       <Filter>src\Platform\Windows</Filter>
     </ClInclude>
@@ -102,7 +114,7 @@
     <ClInclude Include="src\Rebelle\MouseButtonCodes.h">
       <Filter>src\Rebelle</Filter>
     </ClInclude>
-    <ClInclude Include="src\Rebelle\Renderer\Vulkan.h">
+    <ClInclude Include="src\Rebelle\Renderer\GraphicsContext.h">
       <Filter>src\Rebelle\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Rebelle\Window.h">
@@ -1340,6 +1352,12 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Vulkan\Vulkan.cpp">
+      <Filter>src\Platform\Vulkan</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
@@ -1363,9 +1381,6 @@
     </ClCompile>
     <ClCompile Include="src\Rebelle\Log.cpp">
       <Filter>src\Rebelle</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rebelle\Renderer\Vulkan.cpp">
-      <Filter>src\Rebelle\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\rblpch.cpp">
       <Filter>src</Filter>

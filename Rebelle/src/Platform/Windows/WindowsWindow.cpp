@@ -6,7 +6,7 @@
 #include "Rebelle/Events/MouseEvent.h"
 #include "Rebelle/Events/KeyEvent.h"
 
-#include <Glad/glad.h>
+#include "Platform/OpenGL/OpenGLContext.h"
 
 namespace Rebelle {
 
@@ -35,6 +35,7 @@ namespace Rebelle {
 
 		RBL_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
 
+
 		if (!s_GLFWInitialized)
 		{
 			// TODO: glfwTerminate on system shutdown
@@ -47,6 +48,11 @@ namespace Rebelle {
 		}
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
+		m_Context = new OpenGLContext(m_Window);
+		m_Context->Init();
+
+
+		glfwSetWindowUserPointer(m_Window, &m_Data);
 
 		GLFWimage images[1];
 		int width, height, components;
@@ -62,14 +68,8 @@ namespace Rebelle {
 		images[0].width = width;
 		images[0].pixels = data;
 		glfwSetWindowIcon(m_Window, 1, images);
-
 		stbi_image_free(data);
 
-		glfwMakeContextCurrent(m_Window);
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		RBL_CORE_ASSERT(status, "failed to initialize glad");
-
-		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
 		//callback with lambda
@@ -177,7 +177,7 @@ namespace Rebelle {
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)
