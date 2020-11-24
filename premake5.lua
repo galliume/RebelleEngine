@@ -77,7 +77,8 @@ project "Rebelle"
 		{
 			"RBL_PLATFORM_WINDOWS",
 			"RBL_BUILD_DLL",
-			"GLFW_INCLUDE_NONE"
+			"GLFW_INCLUDE_NONE",
+			"_CRT_SECURE_NO_WARNINGS"
 		}
 
 	filter "configurations:Debug"
