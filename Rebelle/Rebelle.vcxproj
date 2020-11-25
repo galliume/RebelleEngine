@@ -579,6 +579,8 @@
     <ClCompile Include="src\rblpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\Rebelle\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Rebelle\Renderer\Shader.h" />
     <ClCompile Include="vendor\stb_image\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>

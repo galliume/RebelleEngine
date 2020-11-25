@@ -6,6 +6,7 @@
 #include "Rebelle/Events/Event.h"
 #include "Rebelle/Events/ApplicationEvent.h"
 #include "Rebelle/ImGui/ImGuiLayer.h"
+#include "Rebelle/Renderer/Shader.h"
 
 namespace Rebelle {
 
@@ -31,6 +32,8 @@ namespace Rebelle {
 		static Application* s_Instance;
 
 		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+
+		std::unique_ptr<Shader>m_Shader;
 	};
 
 	//to be defined in client
