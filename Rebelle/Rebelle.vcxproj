@@ -132,6 +132,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\Vulkan\Vulkan.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
@@ -152,7 +153,9 @@
     <ClInclude Include="src\Rebelle\Log.h" />
     <ClInclude Include="src\Rebelle\Macros.h" />
     <ClInclude Include="src\Rebelle\MouseButtonCodes.h" />
+    <ClInclude Include="src\Rebelle\Renderer\Buffer.h" />
     <ClInclude Include="src\Rebelle\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Rebelle\Renderer\Renderer.h" />
     <ClInclude Include="src\Rebelle\Renderer\Shader.h" />
     <ClInclude Include="src\Rebelle\Window.h" />
     <ClInclude Include="src\rblpch.h" />
@@ -567,6 +570,7 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\Vulkan\Vulkan.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
@@ -577,6 +581,8 @@
     <ClCompile Include="src\Rebelle\Layer.cpp" />
     <ClCompile Include="src\Rebelle\LayerStack.cpp" />
     <ClCompile Include="src\Rebelle\Log.cpp" />
+    <ClCompile Include="src\Rebelle\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Rebelle\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Rebelle\Renderer\Shader.cpp" />
     <ClCompile Include="src\rblpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
