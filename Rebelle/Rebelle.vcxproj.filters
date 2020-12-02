@@ -117,6 +117,9 @@
     <ClInclude Include="src\Rebelle\Renderer\GraphicsContext.h">
       <Filter>src\Rebelle\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Rebelle\Renderer\Shader.h">
+      <Filter>src\Rebelle\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Rebelle\Window.h">
       <Filter>src\Rebelle</Filter>
     </ClInclude>
@@ -1382,17 +1385,14 @@
     <ClCompile Include="src\Rebelle\Log.cpp">
       <Filter>src\Rebelle</Filter>
     </ClCompile>
+    <ClCompile Include="src\Rebelle\Renderer\Shader.cpp">
+      <Filter>src\Rebelle\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\rblpch.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rebelle\Renderer\Shader.h">
-      <Filter>src\Rebelle\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rebelle\Renderer\Shader.cpp">
-      <Filter>src\Rebelle\Renderer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

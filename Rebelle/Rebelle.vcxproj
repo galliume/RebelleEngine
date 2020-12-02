@@ -153,6 +153,7 @@
     <ClInclude Include="src\Rebelle\Macros.h" />
     <ClInclude Include="src\Rebelle\MouseButtonCodes.h" />
     <ClInclude Include="src\Rebelle\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Rebelle\Renderer\Shader.h" />
     <ClInclude Include="src\Rebelle\Window.h" />
     <ClInclude Include="src\rblpch.h" />
     <ClInclude Include="vendor\GLM\glm\common.hpp" />
@@ -576,11 +577,10 @@
     <ClCompile Include="src\Rebelle\Layer.cpp" />
     <ClCompile Include="src\Rebelle\LayerStack.cpp" />
     <ClCompile Include="src\Rebelle\Log.cpp" />
+    <ClCompile Include="src\Rebelle\Renderer\Shader.cpp" />
     <ClCompile Include="src\rblpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\Rebelle\Renderer\Shader.cpp" />
-    <ClCompile Include="src\Rebelle\Renderer\Shader.h" />
     <ClCompile Include="vendor\stb_image\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
