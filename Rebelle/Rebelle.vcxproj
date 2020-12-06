@@ -157,6 +157,7 @@
     <ClInclude Include="src\Rebelle\MouseButtonCodes.h" />
     <ClInclude Include="src\Rebelle\Renderer\Buffer.h" />
     <ClInclude Include="src\Rebelle\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Rebelle\Renderer\OrthographicCamera.h" />
     <ClInclude Include="src\Rebelle\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Rebelle\Renderer\Renderer.h" />
     <ClInclude Include="src\Rebelle\Renderer\RendererAPI.h" />
@@ -589,6 +590,7 @@
     <ClCompile Include="src\Rebelle\LayerStack.cpp" />
     <ClCompile Include="src\Rebelle\Log.cpp" />
     <ClCompile Include="src\Rebelle\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Rebelle\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\Rebelle\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Rebelle\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Rebelle\Renderer\RendererAPI.cpp" />

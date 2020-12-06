@@ -9,6 +9,7 @@
 #include "Rebelle/Renderer/Shader.h"
 #include "Rebelle/Renderer/Buffer.h"
 #include "Rebelle/Renderer/VertexArray.h"
+#include "Rebelle/Renderer/OrthographicCamera.h"
 
 namespace Rebelle {
 
@@ -39,6 +40,8 @@ namespace Rebelle {
 
 		std::shared_ptr<Shader>m_Shader;
 		std::shared_ptr<VertexArray>m_VertexArray;
+
+		OrthographicCamera m_Camera;
 	};
 
 	//to be defined in client

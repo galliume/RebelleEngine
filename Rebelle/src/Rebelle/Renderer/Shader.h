@@ -2,6 +2,7 @@
 
 #include "rblpch.h"
 #include <string>
+#include "glm/glm.hpp"
 
 namespace Rebelle {
 	class Shader
@@ -12,6 +13,8 @@ namespace Rebelle {
 
 		void Bind() const;
 		void Unbind() const;
+
+		void UploadUniformMat4(const std::string& name, const glm::mat4& matrix);
 	private:
 		uint32_t m_RendererID;
 	};
