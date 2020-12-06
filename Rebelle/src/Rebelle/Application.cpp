@@ -2,9 +2,7 @@
 #include "Macros.h"
 #include "Application.h"
 #include "Rebelle/Log.h"
-#include "Input.h"
-#include <Glad/glad.h>
-#include "Platform/Windows/WindowsWindow.h"
+#include "Renderer/Renderer.h"
 
 namespace Rebelle {
 	Application* Application::s_Instance = nullptr;
@@ -137,18 +135,20 @@ namespace Rebelle {
 	void Application::Run()
 	{
 		while (m_Running) 
-		{
-			glClearColor(0.1f, 0.1f, 0.1f, 1);
-			glClear(GL_COLOR_BUFFER_BIT);
+		{	
+			RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
+			RenderCommand::Clear();
+
+			Renderer::BeginScene();
 
 			m_Shader2->Bind();
-			m_SquareVertexArray->Bind();
-			glDrawElements(GL_TRIANGLES, m_SquareVertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
-
+			Renderer::Submit(m_SquareVertexArray);
+			
 			m_Shader->Bind();
-			m_VertexArray->Bind();
-			glDrawElements(GL_TRIANGLES, m_VertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+			Renderer::Submit(m_VertexArray);
 
+			Renderer::EndScene();
+					
 			m_LayerStack.Update();
 
 			m_ImGuiLayer->Begin();

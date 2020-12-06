@@ -1,17 +1,16 @@
 #pragma once
 
-namespace Rebelle {
-	enum class RendererAPI
-	{
-		None =0,
-		OpenGL = 1
-	};
+#include "Rebelle/Renderer/RendererAPI.h";
+#include "RenderCommand.h"
 
+namespace Rebelle {
 	class Renderer
 	{
 	public:
-		inline static RendererAPI GetAPI() { return s_RendererAPI; }
-	private:
-		static RendererAPI s_RendererAPI;
+		static void BeginScene();
+		static void EndScene();
+		static void Submit(const std::shared_ptr<VertexArray>& vertexArray);
+
+		inline static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
 	};
 }
