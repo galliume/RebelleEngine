@@ -32,9 +32,9 @@ namespace Rebelle {
 	{
 		ShaderDataType Type;
 		std::string Name;
-		uint32_t Offset;
-		uint32_t Size;
-		bool Normalized;
+		uint32_t Offset = 0;
+		uint32_t Size = 0;
+		bool Normalized = false;
 
 		BufferElement() {};
 
