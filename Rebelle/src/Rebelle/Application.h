@@ -6,14 +6,10 @@
 #include "Rebelle/Events/Event.h"
 #include "Rebelle/Events/ApplicationEvent.h"
 #include "Rebelle/ImGui/ImGuiLayer.h"
-#include "Rebelle/Renderer/Shader.h"
-#include "Rebelle/Renderer/Buffer.h"
-#include "Rebelle/Renderer/VertexArray.h"
-#include "Rebelle/Renderer/OrthographicCamera.h"
 
 namespace Rebelle {
 
-	class REBELLE_API Application
+	class Application
 	{
 	public:
 		Application();
@@ -33,15 +29,6 @@ namespace Rebelle {
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 		static Application* s_Instance;
-
-
-		std::shared_ptr<Shader>m_Shader2;
-		std::shared_ptr<VertexArray>m_SquareVertexArray;
-
-		std::shared_ptr<Shader>m_Shader;
-		std::shared_ptr<VertexArray>m_VertexArray;
-
-		OrthographicCamera m_Camera;
 	};
 
 	//to be defined in client
