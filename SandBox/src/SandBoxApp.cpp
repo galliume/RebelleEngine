@@ -117,33 +117,34 @@ public:
 		m_Shader.reset(new Rebelle::Shader(vertexSrc, fragmentSrc));
 	}
 
-	void OnUpdate() override
-	{
+	void OnUpdate(Rebelle::TimeStep timeStep) override
+	{		
+		RBL_INFO(timeStep);
 		if (Rebelle::Input::IsKeyPressed(RBL_KEY_LEFT))
 		{
-			m_CameraPosition.x += m_CameraSpeed;
+			m_CameraPosition.x += m_CameraSpeed * timeStep;
 		}
 		else if (Rebelle::Input::IsKeyPressed(RBL_KEY_RIGHT))
 		{
-			m_CameraPosition.x -= m_CameraSpeed;
+			m_CameraPosition.x -= m_CameraSpeed * timeStep;
 		}
 		
 		if (Rebelle::Input::IsKeyPressed(RBL_KEY_UP))
 		{
-			m_CameraPosition.y -= m_CameraSpeed;
+			m_CameraPosition.y -= m_CameraSpeed * timeStep;
 		}
 		else if (Rebelle::Input::IsKeyPressed(RBL_KEY_DOWN))
 		{
-			m_CameraPosition.y += m_CameraSpeed;
+			m_CameraPosition.y += m_CameraSpeed * timeStep;
 		}
 
 		if (Rebelle::Input::IsKeyPressed(RBL_KEY_Q))
 		{
-			m_CameraRotation -= m_CameraRotationSpeed;
+			m_CameraRotation -= m_CameraRotationSpeed * timeStep;
 		}
 		else if (Rebelle::Input::IsKeyPressed(RBL_KEY_W))
 		{
-			m_CameraRotation += m_CameraRotationSpeed;
+			m_CameraRotation += m_CameraRotationSpeed * timeStep;
 		}
 
 		Rebelle::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
@@ -178,9 +179,9 @@ private:
 
 	Rebelle::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
-	float m_CameraSpeed = 0.1f;
+	float m_CameraSpeed = 1.0f;
 	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 0.1f;
+	float m_CameraRotationSpeed = 10.0f;
 
 };
 

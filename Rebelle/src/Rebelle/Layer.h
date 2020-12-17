@@ -2,6 +2,7 @@
 
 #include "Rebelle/Core.h"
 #include "Rebelle/Events/Event.h"
+#include "Rebelle/Core/TimeStep.h"
 
 namespace Rebelle {
 
@@ -13,7 +14,7 @@ namespace Rebelle {
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(TimeStep timeStep) {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
 

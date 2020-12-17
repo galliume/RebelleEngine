@@ -16,12 +16,12 @@ namespace Rebelle {
 		}
 	}
 
-	void LayerStack::Update()
+	void LayerStack::Update(TimeStep timeStep)
 	{
 		for (Layer* layer : m_Layers)
 		{
 			//RBL_CORE_INFO("{0}", layer->GetName());
-			layer->OnUpdate();
+			layer->OnUpdate(timeStep);
 		}
 	}
 
